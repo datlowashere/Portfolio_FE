@@ -30,7 +30,7 @@ const Header = ({ onNavigate, refs }: HeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const muiTheme = useMuiTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
-  const [time, setTime] = useState<string>('');
+  const [dateTime, setDateTime] = useState<string>('');
   const [profile, setProfile] = useState<Profile | null>(null);
 
   useEffect(() => {
@@ -47,13 +47,16 @@ const Header = ({ onNavigate, refs }: HeaderProps) => {
   }, []);
 
   useEffect(() => {
-    const updateTime = () => {
+    const updateDateTime = () => {
       const now = new Date();
-      setTime(now.toLocaleTimeString());
+      const day = now.toLocaleDateString('en-US', { weekday: 'short' });
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setDateTime(`${day} ${hours}:${minutes}, Da Nang, Viet Nam`);
     };
 
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -86,12 +89,15 @@ const Header = ({ onNavigate, refs }: HeaderProps) => {
         {/* Time Display */}
         <Typography
           sx={{
-            fontFamily: 'monospace',
-            fontSize: '0.875rem',
-            display: { xs: 'none', sm: 'block' }
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif',
+            fontSize: '1.125rem',
+            fontWeight: 500,
+            letterSpacing: '0.02em',
+            display: { xs: 'none', sm: 'block' },
+            color: 'inherit'
           }}
         >
-          {time}
+          {dateTime}
         </Typography>
 
         {/* Navigation Menu */}

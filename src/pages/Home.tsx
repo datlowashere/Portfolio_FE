@@ -111,7 +111,7 @@ const MainLayout = ({ profile }: { profile: IProfile }) => {
                 </Tooltip>
               )}
               {profile.socialLinks.x && (
-                <Tooltip title="Twitter">
+                <Tooltip title="X">
                   <Link
                     href={profile.socialLinks.x}
                     target="_blank"
@@ -122,7 +122,7 @@ const MainLayout = ({ profile }: { profile: IProfile }) => {
                   >
                     <XIcon sx={{ color: theme.palette.primary.main }} />
                     <Typography sx={{ display: { xs: 'none', sm: 'block' } }}>
-                      Twitter
+                      X
                     </Typography>
                   </Link>
                 </Tooltip>
