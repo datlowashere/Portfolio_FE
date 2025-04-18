@@ -1,6 +1,7 @@
-import { createTheme, PaletteMode } from '@mui/material/styles';
+import { createTheme, Theme, ThemeOptions } from '@mui/material/styles';
+import { PaletteMode } from '@mui/material';
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
     primary: {
@@ -90,6 +91,9 @@ const getDesignTokens = (mode: PaletteMode) => ({
         root: {
           textTransform: 'none',
           borderRadius: 8,
+          '&:hover': {
+            backgroundColor: 'rgba(0, 0, 0, 0.04)'
+          }
         }
       }
     },
@@ -103,4 +107,4 @@ const getDesignTokens = (mode: PaletteMode) => ({
   }
 });
 
-export const getTheme = (mode: PaletteMode) => createTheme(getDesignTokens(mode)); 
+export const getTheme = (mode: PaletteMode): Theme => createTheme(getDesignTokens(mode)); 
