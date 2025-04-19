@@ -30,6 +30,7 @@ const Header = ({ onNavigate, refs }: HeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const muiTheme = useMuiTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(muiTheme.breakpoints.between('sm', 'md'));
   const [dateTime, setDateTime] = useState<string>('');
   const [profile, setProfile] = useState<Profile | null>(null);
 
@@ -52,14 +53,19 @@ const Header = ({ onNavigate, refs }: HeaderProps) => {
       const day = now.toLocaleDateString('en-US', { weekday: 'short' });
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
-      setDateTime(`${day} ${hours}:${minutes}, Da Nang, Viet Nam`);
+      
+      if (isTablet) {
+        setDateTime(`${day} ${hours}:${minutes}`);
+      } else {
+        setDateTime(`${day} ${hours}:${minutes}, Da Nang, Viet Nam`);
+      }
     };
 
     updateDateTime();
     const interval = setInterval(updateDateTime, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isTablet]);
 
   const handleResumeClick = () => {
     if (profile?.resumeLink) {

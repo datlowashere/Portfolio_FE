@@ -111,7 +111,7 @@ const Contact = () => {
                 </Typography>
 
                 <Typography variant="body1" sx={{ fontSize: '1.1rem', color: theme.palette.text.secondary }}>
-                  Feel free to reach out through the form or connect with me directly on social media.
+                Whether it's a quick message or a social connection, just a click away. I'll be waiting for you 😉
                 </Typography>
               </Box>
 
